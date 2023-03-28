@@ -27,6 +27,7 @@ font2 = pygame.font.Font('minecraft.ttf',16)
 texto2 = font2.render('https://www.youtube.com/watch?v=AY9MnQ4x3zk 49:30', False, 'white')
 
 pj_x_pos = screen_width/2-8
+pj_y_pos = screen_height/2-8
 
 while True:
     #para actualizar siempre la pantalla (y no se vean frames pasados)
@@ -34,7 +35,7 @@ while True:
     
     #para cerrar el juego con la x
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        if event.type == pygame.QUIT or event.type == pygame.K_ESCAPE:
             pygame.quit()
             exit()
             
@@ -46,11 +47,13 @@ while True:
     #blit = block transfer para pasar de una surface a la display surface
     screen.blit(texto1,(0,0))
     screen.blit(texto2,(0,screen_height-32))
-    #velocidad
-    if pj_x_pos <= screen_width:
-        pj_x_pos = pj_x_pos+1
-    if pj_x_pos >= screen_width:
-        pj_x_pos = 0
+    
+    #movimiento
+    for event in pygame.event.get():
+        if event.type == pygame.K_UP:
+            pygame.quit()
+            exit()
+            
     screen.blit(sus,(screen_width-20,screen_height-20))
     screen.blit(sus,(screen_width-40,screen_height-40))
     screen.blit(pj,(pj_x_pos,screen_height/2-8))
