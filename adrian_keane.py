@@ -30,7 +30,7 @@ texto2 = font.render('QUE NO ADRIAN', False, 'white')
 texto2_rect = texto2.get_rect(centerx = screen_width/2, centery = screen_height-screen_height/3)
 texto3 = font.render('NOOOOOOOO (ahora adrian es sus)', False, 'red')
 texto3_rect = texto3.get_rect(centerx = screen_width/2, centery = screen_height/2)
-texto4 = font.render('Agarra al Adrian', False, 'lightgrey')
+texto4 = font.render('*Agarrar al Adrian*', False, 'lightgrey')
 texto4_rect = texto4.get_rect(centerx = screen_width/2, centery = screen_height/3)
 
 while True:
