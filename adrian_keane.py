@@ -5,8 +5,8 @@ from sys import exit #para poder cerrar el juego
 pygame.init() 
 
 #crear ventana + resolucion
-screen_width = 1000
-screen_height = 600
+screen_width = 600
+screen_height = 400
 screen = pygame.display.set_mode((screen_width,screen_height))
 
 #cambiarle el nombre a la ventana
