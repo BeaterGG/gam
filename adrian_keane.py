@@ -25,11 +25,12 @@ sus_rect = sus_surf.get_rect(right = screen_width, centery = screen_height/2)
 #fuente
 font = pygame.font.Font('minecraft.ttf',32)
 texto1 = font.render('Adrian no toques el sus', False, 'white')
+texto1_rect = texto1.get_rect(centerx = screen_width/2, centery = 20)
 texto2 = font.render('QUE NO ADRIAN', False, 'white')
 texto2_rect = texto2.get_rect(centerx = screen_width/2, centery = screen_height-screen_height/3)
 texto3 = font.render('NOOOOOOOO (ahora adrian es sus)', False, 'red')
 texto3_rect = texto3.get_rect(centerx = screen_width/2, centery = screen_height/2)
-texto4 = font.render('Agarra al Adrian', False, 'grey')
+texto4 = font.render('Agarra al Adrian', False, 'lightgrey')
 texto4_rect = texto4.get_rect(centerx = screen_width/2, centery = screen_height/3)
 
 while True:
@@ -54,7 +55,7 @@ while True:
     #pj_rect.centerx += 1
 
     #blit = block transfer para pasar de una surface a la display surface
-    screen.blit(texto1,(0,0))
+    screen.blit(texto1,texto1_rect)
 
     #colisiones
     mouse_pos = pygame.mouse.get_pos()
@@ -63,6 +64,8 @@ while True:
     x=1
 
     if pj_rect.collidepoint(mouse_pos):
+        pygame.draw.rect(screen,'black',texto4_rect)
+        pygame.draw.rect(screen,'white',texto4_rect,1,6)
         screen.blit(texto4,texto4_rect)
 
     if mouse_click == (True, False, False):
@@ -70,6 +73,8 @@ while True:
         screen.blit(pj_surf,(mouse_pos))
         screen.blit(texto2,texto2_rect)
         if sus_rect.collidepoint(mouse_pos):
+            pygame.draw.rect(screen,'black',texto3_rect)
+            pygame.draw.rect(screen,'white',texto3_rect,1,6)
             screen.blit(texto3,texto3_rect)
         
     if x==1: screen.blit(pj_surf,pj_rect)
