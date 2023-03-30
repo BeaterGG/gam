@@ -2,7 +2,7 @@ import pygame
 from sys import exit #para poder cerrar el juego
 
 #inicializar pygame
-pygame.init() 
+pygame.init()
 
 #crear ventana + resolucion
 screen_width = 600
