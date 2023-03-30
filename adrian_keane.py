@@ -6,7 +6,7 @@ pygame.init()
 
 #crear ventana + resolucion
 screen_width = 800
-screen_height = 800
+screen_height = 600
 screen = pygame.display.set_mode((screen_width,screen_height))
 
 #cambiarle el nombre a la ventana
