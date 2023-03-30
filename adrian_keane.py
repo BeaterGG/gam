@@ -5,8 +5,8 @@ from sys import exit #para poder cerrar el juego
 pygame.init()
 
 #crear ventana + resolucion
-screen_width = 600
-screen_height = 400
+screen_width = 800
+screen_height = 800
 screen = pygame.display.set_mode((screen_width,screen_height))
 
 #cambiarle el nombre a la ventana
@@ -19,7 +19,7 @@ clock = pygame.time.Clock()
 fondo = pygame.image.load('piso.png').convert_alpha()
 pj_surf = pygame.image.load('pj.png').convert_alpha()
 pj_rect = pj_surf.get_rect(centerx = screen_width/2, centery = screen_height/2)
-sus_surf = pygame.image.load('sus.png').convert_alpha()
+sus_surf = pygame.image.load('sus2.png').convert_alpha()
 sus_rect = sus_surf.get_rect(right = screen_width, centery = screen_height/2)
 
 #fuente
