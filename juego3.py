@@ -12,21 +12,23 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 white = (255, 255, 255)
 black = (0, 0, 0)
 
+fondo = pygame.image.load('piso.png').convert_alpha()
+
 # Jugadores
 player1 = pygame.Rect(50, 50, 10, 10)
 player2 = pygame.Rect(500, 50, 10, 10)
+player1_image = pygame.image.load("pj.png")
+player2_image = pygame.image.load("sus2.png")
 
 # Velocidad de movimiento
-speed = 1
+speed = 4
 
 # Texto en pantalla
 font = pygame.font.Font(None, 36)
 
 def display_winner(winner):
     if winner == 1:
-        text = font.render("Adrian ha sido cazado por el sus", True, black)
-    else:
-        text = font.render("El sus ha sido cazado por Adrian", True, black)
+        text = font.render("Adrian ha sido cazado por el sus", True, "lightgrey")
     text_rect = text.get_rect(center=(screen_width/2, screen_height/2))
     screen.blit(text, text_rect)
 
@@ -35,6 +37,10 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+    screen.fill(black)
+    for y in range(0,screen_height,16):
+        for x in range(0,screen_width,16):
+            screen.blit(fondo,(x,y))
 
     # Movimiento de los jugadores
     keys = pygame.key.get_pressed()
@@ -84,9 +90,9 @@ while running:
         running = False
 
     # Dibujar en pantalla
-    screen.fill(white)
-    pygame.draw.circle(screen, black, (player1.centerx, player1.centery), player1.width//2)
-    pygame.draw.circle(screen, black, (player2.centerx, player2.centery), player2.width//2)
+    
+    screen.blit(player1_image,player1)
+    screen.blit(player2_image,player2)
     pygame.display.flip()
 
 pygame.quit()
