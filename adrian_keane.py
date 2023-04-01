@@ -15,12 +15,16 @@ pygame.display.set_caption('adrian keane')
 #reloj
 clock = pygame.time.Clock()
 
+#estados del juego
+game_active = True
+
 #imagenes y rects
 fondo = pygame.image.load('piso.png').convert_alpha()
 pj_surf = pygame.image.load('pj.png').convert_alpha()
 pj_rect = pj_surf.get_rect(centerx = screen_width/2, centery = screen_height/2)
 sus_surf = pygame.image.load('sus2.png').convert_alpha()
 sus_rect = sus_surf.get_rect(right = screen_width, centery = screen_height/2)
+velocity = 5
 
 #fuente
 font = pygame.font.Font('minecraft.ttf',32)
@@ -37,52 +41,44 @@ while True:
     #repeticion de frames para que el juego continue activo
     pygame.display.update()
     clock.tick(60) #fps
-    #para actualizar siempre la pantalla (y no se vean frames pasados)
-    screen.fill(('black'))
     
     #para cerrar el juego con la x
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-            
-    #fondo repetitivo        
-    for y in range(0,screen_height,16):
-        for x in range(0,screen_width,16):
-            screen.blit(fondo,(x,y))
 
-    #movimiento
-    #pj_rect.centerx += 1
-
-    #blit = block transfer para pasar de una surface a la display surface
-    screen.blit(texto1,texto1_rect)
-
-    #colisiones
-    mouse_pos = pygame.mouse.get_pos()
-    mouse_click = pygame.mouse.get_pressed()
     
-    x=1
+    keys = pygame.key.get_pressed()
+    if game_active:
+        screen.fill(('black'))        
+        #fondo repetitivo        
+        for y in range(0,screen_height,16):
+            for x in range(0,screen_width,16):
+                screen.blit(fondo,(x,y))
 
-    if pj_rect.collidepoint(mouse_pos):
-        pygame.draw.rect(screen,'black',texto4_rect)
-        pygame.draw.rect(screen,'white',texto4_rect,1,6)
-        screen.blit(texto4,texto4_rect)
+        #blit = block transfer para pasar de una surface a la display surface
+        screen.blit(texto1,texto1_rect)
+        screen.blit(pj_surf,pj_rect)
+        screen.blit(sus_surf,sus_rect)
 
-    if mouse_click == (True, False, False):
-        x -= 1
-        screen.blit(pj_surf,(mouse_pos))
-        screen.blit(texto2,texto2_rect)
-        if sus_rect.collidepoint(mouse_pos):
-            pygame.draw.rect(screen,'black',texto3_rect)
-            pygame.draw.rect(screen,'white',texto3_rect,1,6)
-            screen.blit(texto3,texto3_rect)
+        #movivmiento
+        if keys[pygame.K_RIGHT]:
+            pj_rect.centerx += velocity
+        if keys[pygame.K_LEFT]:
+            pj_rect.centerx -= velocity
+        if keys[pygame.K_UP]:
+            pj_rect.centery -= velocity
+        if keys[pygame.K_DOWN]:
+            pj_rect.centery += velocity
+        #colisiones
+        if sus_rect.colliderect(pj_rect):
+            game_active = False
+                
         
-    if x==1: screen.blit(pj_surf,pj_rect)
-
-    screen.blit(sus_surf,sus_rect)
-    
-    
-    
-    
-    
-    
+    else:
+        screen.fill('black')
+        screen.blit(texto3,texto3_rect)
+        if keys[pygame.K_SPACE]:
+            game_active = True
+            pj_rect = pj_surf.get_rect(centerx = screen_width/2, centery = screen_height/2)
