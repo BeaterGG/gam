@@ -21,22 +21,25 @@ game_active = True
 #imagenes y rects
 fondo = pygame.image.load('piso.png').convert_alpha()
 pj_surf = pygame.image.load('pj.png').convert_alpha()
+pj_surf = pygame.transform.rotozoom(pj_surf,0,2)
 pj_rect = pj_surf.get_rect(centerx = screen_width/2, centery = screen_height/2)
 sus_surf = pygame.image.load('sus2.png').convert_alpha()
 sus_rect = sus_surf.get_rect(right = screen_width, centery = screen_height/2)
 velocity = 5
 
 #fuente
-font = pygame.font.Font('minecraft.ttf',32)
-texto1 = font.render('Adrian no toques el sus', False, 'white')
+font1 = pygame.font.Font('minecraft.ttf',32)
+texto1 = font1.render('Adrian no toques el sus', False, 'white')
 texto1_rect = texto1.get_rect(centerx = screen_width/2, centery = 20)
-texto2 = font.render('QUE NO ADRIAN', False, 'white')
+texto2 = font1.render('QUE NO ADRIAN', False, 'white')
 texto2_rect = texto2.get_rect(centerx = screen_width/2, centery = screen_height-screen_height/3)
-texto3 = font.render('NOOOOOOOO (ahora adrian es sus)', False, 'red')
+texto3 = font1.render('NOOOOOOOO (ahora adrian es sus)', False, 'red')
 texto3_rect = texto3.get_rect(centerx = screen_width/2, centery = screen_height/2)
-texto4 = font.render('*Agarrar al Adrian*', False, 'lightgrey')
+texto4 = font1.render('*Agarrar al Adrian*', False, 'lightgrey')
 texto4_rect = texto4.get_rect(centerx = screen_width/2, centery = screen_height/3)
-
+font2 = pygame.font.Font('minecraft.ttf',16)
+texto5 = font2.render('Presiona espacio para reiniciar', False, 'lightgrey')
+texto5_rect = texto5.get_rect(centerx = screen_width/2, centery = screen_height-screen_height/3)
 while True:
     #repeticion de frames para que el juego continue activo
     pygame.display.update()
@@ -79,6 +82,7 @@ while True:
     else:
         screen.fill('black')
         screen.blit(texto3,texto3_rect)
+        screen.blit(texto5,texto5_rect)
         if keys[pygame.K_SPACE]:
             game_active = True
             pj_rect = pj_surf.get_rect(centerx = screen_width/2, centery = screen_height/2)
